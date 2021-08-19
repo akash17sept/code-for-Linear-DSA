@@ -1,0 +1,162 @@
+//Write a program to find all pairs of an integer array whose sum is equal to a given number?
+
+let arr=[2,5,7,3,9,5,8]
+const num=10
+for(let i=0;i<arr.length;i++) {
+    for(let j=i+1;j<arr.length;j++){
+        sum=arr[i]+arr[j]
+        if(sum===num){
+            console.log("(",arr[i],",",arr[j],")")
+        }
+    }
+}
+
+
+//Write a program to reverse an array in place? In place means you cannot create a new array. You have to update the original array.
+
+let arr4=[2,5,7,3,9,5,8]
+for(let i=0;i<arr4.length/2;i++) {
+    let temp=arr4[i]
+    arr4[i]=arr4[arr4.length-1-i]
+    arr4[arr4.length-1-i]=temp
+}
+console.log(arr4)
+
+
+//Write a program to check if two strings are a rotation of each other?
+
+let str1="HELLO"
+let str2 = "OHELL"
+if(str1.length!=str2.length){
+    console.log("Given String are not rotation of each other")
+}
+else{
+    let temp = str1+str1
+    if(temp.substring(str2)){
+        console.log("Given String are rotaion of each other")
+    }else{
+        console.log("Given String are not rotaion of each other")
+    }
+}
+
+
+//Write a program to print the first non-repeated character from a string?
+
+const str="aacdegsscd"
+let obj={}
+let count=0
+for(let i=0;i<str.length;i++) {
+    if(obj[str[i]]){
+        obj[str[i]]=obj[str[i]]+1
+    }
+    else{
+        obj[str[i]]=count+1
+    }
+}
+for(let i=0;i<str.length;i++){
+    if(obj[str[i]]===1){
+        console.log(str[i])
+        break;
+    }
+}
+
+//Read about the Tower of Hanoi algorithm. Write a program to implement it.
+
+const n=4
+function towerOfHonoi(n,l,m,r) {
+    if(n===1){
+        console.log("Disk will move from ",l," to ",r)
+    }
+    else {
+        towerOfHonoi(n-1,l,r,m)
+        console.log("Disk ",n," will move from ",l," to ",r)
+        towerOfHonoi(n-1,m,l,r)
+    }
+}
+towerOfHonoi(n,'A','B','C')
+
+
+// Write a program to convert postfix to prefix expression.
+
+const postfixExp = "cd+ba-*"
+let prefixExp = []
+for(let i=0;i<postfixExp.length;i++) {
+    if(postfixExp[i]==="+"||postfixExp[i]==="-"||postfixExp[i]==="*"||postfixExp[i]==="/") {
+        let op1 = prefixExp.pop()
+        let op2 = prefixExp.pop()
+        let temp = postfixExp[i] + op2 + op1
+        prefixExp.push(temp)
+    }
+    else {
+        prefixExp.push(postfixExp[i])
+    }
+}
+console.log(prefixExp)
+
+
+
+// Write a program to convert prefix expression to infix expression.
+
+const prefixExp1 = "*+ad-cd"
+let infixExp = []
+for(let i=prefixExp1.length-1;i>=0;i--) {
+    if(prefixExp1[i]==="+"||prefixExp1[i]==="-"||prefixExp1[i]==="*"||prefixExp1[i]==="/") {
+        let op1 = infixExp.pop()
+        let op2 = infixExp.pop()
+        let temp = "(" + op1 + prefixExp1[i] + op2 + ")"
+        infixExp.push(temp)
+    }
+    else {
+        infixExp.push(prefixExp1[i])
+    }
+}
+console.log(infixExp)
+
+
+// Write a program to check if all the brackets are closed in a given code snippet.
+
+const input1="[()]}"
+const groups ={'[':']','{':'}','(':')'}
+const input2=[]
+for(let i=0;i<input1.length;i++){
+    let y=input1[i]
+    if(y==='[' || y==='{' || y==='('){
+        input2.push(y)
+    }
+    else {
+        let lastItem = input2[input2.length-1]
+        if(groups[lastItem]==y){
+            input2.pop()
+        }
+    }
+}
+if(input2.length===0){
+    console.log("balanced Parenthesis")
+}
+else{
+    console.log("not balanced")
+}
+
+
+// Write a program to reverse a stack.
+
+const arr1=[2,5,7,9,6]
+const arr2=[]
+while(arr1.length) {
+    let data = arr1.pop()
+    arr2.push(data)
+}
+console.log(arr2)
+
+
+// Write a program to find the smallest number using a stack.
+
+const arr3=[2,6,8,1,10,15,25,3]
+let min=arr3.pop()
+while(arr3.length) {
+    let a= arr3.pop()
+    if(min > a) {
+        min=a
+    }
+}
+console.log(min)
